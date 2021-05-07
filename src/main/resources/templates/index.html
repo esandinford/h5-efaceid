@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--活体检测sdk的url-->
+    <link  rel="stylesheet" type="text/css" href="https://edis.esandcloud.com/efaceid/1.2.1/EsLivingDetection.css">
+    <script src=" https://edis.esandcloud.com/efaceid/1.2.4/EsLivingDetection.min.1.2.4.js"></script>
+    <!--    本地js-->
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <script th:src="@{/js/main.js}"></script>
+    <title>DetectDemo</title>
+</head>
+<body>
+<div class="headNavigationBar">
+</div>
+<div class="bodyContainer">
+    <div class="myPage" id="indexPage" isShow="true">
+        <div>
+            <label class="radioContainer">远近<input type="radio" value="1" name="livingType" checked></label>
+            <label class="radioContainer">摇头 <input type="radio" value="3" name="livingType"></label>
+            <label class="radioContainer">点头 <input type="radio" value="4" name="livingType"></label>
+        </div>
+        <button id="startDetectBtn" onclick="init()">开始检测</button>
+        <textarea id="console"></textarea>
+    </div>
+    <div class="myPage" id="veriyPage" isShow="false">
+        <div id="videoContainer">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

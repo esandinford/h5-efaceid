@@ -1,0 +1,16 @@
+server:
+  session-timeout: 1800
+  tomcat:
+    threads:
+      max: 3000
+      min-spare: 30
+  port: 8089
+  uri-encoding: utf-8
+spring:
+  thymeleaf:
+    prefix:
+      classpath: /templates   # 访问template下的html文件需要配置模板，映射
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
