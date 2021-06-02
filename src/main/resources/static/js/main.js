@@ -6,14 +6,14 @@ function init(){
     }
 
     //调用sdk进行初始化 会返回一个iniMsg透传给服务器
-    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.2.4/worker.min.1.2.4.js`, livingType).then(result => {
+    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.2.6/worker.min.1.2.6.js`, livingType).then(result => {
         //活体检测开始切换窗口
         $("#indexPage").attr("isShow","false");
         $("#veriyPage").attr("isShow","true");
         //透传初始化数据给服务器
         var formData=new FormData();
         formData.append("initMsg",result.data);
-        //请求服务器获取token
+        //透传给服务器
         return axios({
             method: 'post',
             url: '/init',
@@ -26,7 +26,8 @@ function init(){
         const containerID="videoContainer";
         //开始活人认证
         if(resData.code==="0000"){
-            return EsLivingDetection.startLivingDetect(resData.token,containerID);
+            var deviceId=0;
+            return EsLivingDetection.startLivingDetect(resData.token,containerID,deviceId);
         }else{
             throw resData;
         }
@@ -46,6 +47,10 @@ function init(){
 
     }).then(result=>{
         let resultData=result.data;
+        /*
+        *
+        *
+        * */
         if(resultData.code==="0000"){
             //活体检测结束切换窗口
             $("#indexPage").attr("isShow","true");
@@ -56,6 +61,7 @@ function init(){
             throw result;
         }
     }).catch(ex=>{
+        //程序发生异常
         console.error(ex);
     });
 }
