@@ -6,7 +6,7 @@ function init(){
     }
 
     //调用sdk进行初始化 会返回一个iniMsg透传给服务器
-    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.2.6/worker.min.1.2.6.js`, livingType).then(result => {
+    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.3.3/worker.min.1.3.3.js`, livingType,"CN").then(result => {
         //活体检测开始切换窗口
         $("#indexPage").attr("isShow","false");
         $("#veriyPage").attr("isShow","true");
@@ -26,6 +26,7 @@ function init(){
         const containerID="videoContainer";
         //开始活人认证
         if(resData.code==="0000"){
+            //当前期望调用的摄像头0为默认摄像头
             var deviceId=0;
             return EsLivingDetection.startLivingDetect(resData.token,containerID,deviceId);
         }else{
