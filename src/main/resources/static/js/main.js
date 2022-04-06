@@ -5,8 +5,25 @@ function init(){
         return;
     }
 
-    //调用sdk进行初始化 会返回一个iniMsg透传给服务器
-    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.3.3/worker.min.1.3.3.js`, livingType,"CN").then(result => {
+    var config={
+        // 是否需要视频
+        needVideo: "true",
+        // 是否将视频上传到oss服务器中，填true时会在需要视频时返回一个视频下载链接
+        useCloudStorage: true,
+        style : {
+            progressStaGradient : "#111",
+            progressEndGradient : "#fff",
+            progressBgColor : "#ff123f",
+            maskColor : "#11f",
+            topLabelColor: "#0fa"
+        },
+        takeImageNumber: 2,
+        language: 'CN'
+    }
+
+    // 调用sdk进行初始化 会返回一个iniMsg透传给服务器
+    // TODO: 建议使用最新版的sdk
+    EsLivingDetection.verifyInit(`https://edis.esandcloud.com/efaceid/1.6.1/worker.min.1.6.1.js`, livingType,config).then(result => {
         //活体检测开始切换窗口
         $("#indexPage").attr("isShow","false");
         $("#veriyPage").attr("isShow","true");
